@@ -57,7 +57,7 @@ router.get('/login', (req: Request, res: Response) => {
 
 router.post('/login', (req: RequestWithBody, res: Response) => {
     const { email, password } = req.body;
-    if (email && password && email === 'dgorgan@bitdefender.com' && password === 'boss') {
+    if (email && password && email === 'email@email' && password === 'boss') {
         req.session = { loggedIn: true };
         res.redirect('/');
     } else {
