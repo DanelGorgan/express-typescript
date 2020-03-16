@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { get, controller, use } from './decorators'
-
+import swaggerUi from 'swagger-ui-express'
+import * as swaggerDocument from '../swagger.json'
 
 function requireAuth(req: Request, res: Response, next: NextFunction): void {
     if (req.session && req.session.loggedIn) {
@@ -38,4 +39,8 @@ class routeController {
         res.send('Welcome to protected route')
     }
 
+    @get('/api-docs')
+    @use(swaggerUi.setup(swaggerDocument))
+    getDocs(req: Request, res: Response) {
+    }
 }

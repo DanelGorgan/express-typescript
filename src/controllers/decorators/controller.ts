@@ -28,10 +28,11 @@ export function controller(routePrefix: string) {
             const middlewares = Reflect.getMetadata(MetadataKeys.middleware, target.prototype, key) || [];
             const requiredBodyProps = Reflect.getMetadata(MetadataKeys.validator, target.prototype, key) || [];
 
-            const validator = bodyValidators(requiredBodyProps);
+            // add when needed
+            // const validator = bodyValidators(requiredBodyProps);
             
-            if (path) {
-                router[method](`${routePrefix}${path}`, ...middlewares, validator, routeHandler)
+            if (path === '/api-docs') {
+                router[method](`${routePrefix}${path}`, ...middlewares, routeHandler)
             }
         }
     }
